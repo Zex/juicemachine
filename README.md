@@ -1,2 +1,5 @@
 # juicemachine
 Juice machine data management with protobuf
+
+Author: Zex <top_zlynch@yahoo.com>
+
