@@ -1,0 +1,16 @@
+#!/bin/bash
+
+comp=$1
+
+[ -z $comp ] && echo "Component name required" && exit 0
+
+cpp_path=$comp"_cpp"
+py_path=$comp"_py"
+
+[ ! -d $cpp_path ] && echo "Creating $cpp_path" && mkdir $cpp_path
+[ ! -d $py_path ] && echo "Creating $py_path" && mkdir $py_path
+
+echo "Generating interfaces for component $comp"
+
+protoc --cpp_out=$cpp_path --python_out=$py_path $comp.proto
+
