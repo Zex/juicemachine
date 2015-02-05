@@ -1,8 +1,10 @@
 #!/bin/bash
 
 comp=$1
+proto_base=$2
 
 [ -z $comp ] && echo "Component name required" && exit 0
+[ -z $proto_base ] && echo "Proto base is empty, using present work directory"
 
 cpp_path=$comp"_cpp"
 py_path=$comp"_py"
@@ -12,5 +14,7 @@ py_path=$comp"_py"
 
 echo "Generating interfaces for component $comp"
 
-protoc --cpp_out=$cpp_path --python_out=$py_path $comp.proto
+which protoc &> /dev/null || (echo "protoc not found" && exit 1)
+
+protoc --cpp_out=$cpp_path --python_out=$py_path $proto_base/$comp.proto
 
