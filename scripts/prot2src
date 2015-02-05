@@ -2,12 +2,14 @@
 
 comp=$1
 proto_base=$2
+build_base=$3
 
 [ -z $comp ] && echo "Component name required" && exit 0
 [ -z $proto_base ] && echo "Proto base is empty, using present work directory"
+[ -z $build_base ] && echo "Build base is empty, using present work directory"
 
-cpp_path=$comp"_cpp"
-py_path=$comp"_py"
+cpp_path=$build_base/$comp"_cpp"
+py_path=$build_base/$comp"_py"
 
 [ ! -d $cpp_path ] && echo "Creating $cpp_path" && mkdir $cpp_path
 [ ! -d $py_path ] && echo "Creating $py_path" && mkdir $py_path
