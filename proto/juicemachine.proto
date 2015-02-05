@@ -1,0 +1,19 @@
+
+message Juice
+{
+    message JuiceHeader
+    {
+        required int32 id           = 1;
+        required int32 data_len     = 2;
+    }
+
+    message JuiceProfile
+    {
+        required string name        = 1;
+        required string flavor      = 2;
+        optional string comment     = 3;
+    }
+
+    required JuiceHeader header     = 1;
+    repeated JuiceProfile prof      = 2;
+}
