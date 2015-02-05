@@ -11,8 +11,8 @@ build_base=$3
 cpp_path=$build_base/$comp"_cpp"
 py_path=$build_base/$comp"_py"
 
-[ ! -d $cpp_path ] && echo "Creating $cpp_path" && mkdir $cpp_path
-[ ! -d $py_path ] && echo "Creating $py_path" && mkdir $py_path
+[ ! -d $cpp_path ] && echo "Creating $cpp_path" && mkdir -p $cpp_path
+[ ! -d $py_path ] && echo "Creating $py_path" && mkdir -p $py_path
 
 echo "Generating interfaces for component $comp"
 
