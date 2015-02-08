@@ -3,7 +3,9 @@
 # Author: Zex <top_zlynch@yahoo.com>
 #
 
-PROJECT	:= JuiceMachine
+PROJECT		:= JuiceMachine
+PLATFORM	:= intel_linux
+PBVERSION	:= 2.5.0
 
 include makefiles/predef.mk
 
