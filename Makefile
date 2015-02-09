@@ -18,3 +18,6 @@ gen_src:
 
 clean:
 	$(RM) build
+
+htmldoc:
+	doxygen Doxyfile
