@@ -5,7 +5,9 @@
 
 PROJECT		:= JuiceMachine
 PLATFORM	:= intel_linux
-PBVERSION	:= 2.5.0
+PBVERSION	:= 3.0.0
+PBTOOLS		:= protobuf-$(PLATFORM)-$(PBVERSION)
+PBPATH		:= tools/$(PBTOOLS)/protoc
 
 include makefiles/predef.mk
 
