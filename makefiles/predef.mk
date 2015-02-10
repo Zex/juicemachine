@@ -6,6 +6,7 @@ TOUCH	= touch
 MKDIR	= mkdir -p
 RM		= rm -rf
 LN		= ln -sf
+ECHO	= echo
 
 ifndef PROJECT
 $(error PROJECT not defined)
@@ -15,6 +16,10 @@ PROJECT_ALIAS	= $(shell echo $(PROJECT)|tr '[:upper:]' '[:lower:]')
 PROJECT_DIR		= $(shell pwd)
 BUILD			= $(PROJECT_DIR)/build
 VERSION_HEADER	= $(BUILD)/version.h
+
+PBVERSION		= 3.0.0
+PROTO_BASE		= $(PROJECT_DIR)/proto
+PROTOC			= $(PROJECT_DIR)/tools/protobuf-$(PLATFORM)-$(PBVERSION)/protoc
 
 SOURCES			= $(shell find $(SRCS) -iregex ".*\.c\(c\|pp\|++\|xx\)")
 
