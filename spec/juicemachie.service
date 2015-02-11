@@ -1,0 +1,10 @@
+[Unit]
+Description=Juice Machine service
+
+[Service]
+Type=dbus
+BusName=org.juicemachine
+ExecStart=/opt/juicemachine
+
+[Install]
+Alias=juicemachine.service
