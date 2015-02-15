@@ -18,4 +18,6 @@ $(COMP):
 	$(PROTOC) --cpp_out=$(CPP_OUT) --python_out=$(PY_OUT) --proto_path=$(PROTO_BASE) $(PROTO_BASE)/$(COMP).proto
 
 
+clean:
+	$(RM) $(CPP_OUT) $(PY_OUT)
 
