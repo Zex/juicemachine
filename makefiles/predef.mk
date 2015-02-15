@@ -12,6 +12,10 @@ ifndef PROJECT
 $(error PROJECT not defined)
 endif
 
+ifndef PLATFORM
+$(error PLATFORM not defined)
+endif
+
 PROJECT_ALIAS	= $(shell echo $(PROJECT)|tr '[:upper:]' '[:lower:]')
 PROJECT_DIR		= $(shell pwd)
 BUILD			= $(PROJECT_DIR)/build
