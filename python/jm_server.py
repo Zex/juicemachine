@@ -22,12 +22,15 @@ class JuiceMachine(dbus.service.FallbackObject):
             JM_SERVICE_NAME, bus = connection)
 
         dbus.service.Object.__init__(self, connection_name,
-            JM_1_PATH)
+            JM_CONFIG_PATH)
 
-    @dbus.service.method(JM_1_IFACE,
+    @dbus.service.method(JM_CONFIG_IFACE,
             in_signature = '', out_signature = 's',
             path_keyword = 'path')
-    def list(self, path = JM_1_PATH):
+    def list(self, path = JM_CONFIG_PATH):
+        """
+        TODO: Return goods list
+        """
         return 'Service unique name: ['+self.connection.get_unique_name()+']'
 
 
