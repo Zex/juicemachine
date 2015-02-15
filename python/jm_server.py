@@ -7,6 +7,8 @@
 
 import dbus 
 import dbus.service
+import dbus.mainloop.glib
+import gobject
 from basic import * 
 
 class JuiceMachine(dbus.service.FallbackObject):
@@ -43,3 +45,4 @@ def start_server():
     loop.run()
 
 
+start_server()
