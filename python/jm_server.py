@@ -31,7 +31,14 @@ class JuiceMachine(dbus.service.FallbackObject):
         """
         TODO: Return goods list
         """
-        return 'Service unique name: ['+self.connection.get_unique_name()+']'
+        buf = ""
+        try:
+            with open("/dev/nvram", 'rw') as fd:
+                buf = fd.read()
+        except Exception as e:
+            buf = str(e)
+
+        return buf
 
 
 def start_server():
