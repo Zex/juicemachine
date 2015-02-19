@@ -7,3 +7,6 @@
 JM_SERVICE_NAME = "org.juicemachine"
 JM_CONFIG_IFACE  = "org.juicemachine.config.iface"
 JM_CONFIG_PATH  = "/org/juicemachine/config"
+
+
+NVRAM_DEV = "/dev/nvram"
