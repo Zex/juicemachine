@@ -33,7 +33,7 @@ class JuiceMachine(dbus.service.FallbackObject):
         """
         buf = ""
         try:
-            with open("/dev/nvram", 'rw') as fd:
+            with open(NVRAM_DEV, 'rw') as fd:
                 buf = fd.read()
         except Exception as e:
             buf = str(e)
