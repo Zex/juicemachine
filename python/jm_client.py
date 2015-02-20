@@ -21,10 +21,14 @@ def start_request():
         JM_SERVICE_NAME,
         JM_CONFIG_PATH)
 
-    conf_iface = dbus.Interface(obj,
-        JM_CONFIG_IFACE)
+    dev_iface = dbus.Interface(obj,
+        JM_DEV_IFACE)
+
+    json_iface = dbus.Interface(obj,
+        JM_JSON_IFACE)
 
     print obj.Introspect()
-    print conf_iface.list()
+    print dev_iface.list()
+    print json_iface.list()
 
 start_request()
