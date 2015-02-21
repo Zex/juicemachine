@@ -26,6 +26,19 @@ class JuiceMachine(dbus.service.FallbackObject):
         dbus.service.Object.__init__(self, connection_name,
             JM_CONFIG_PATH)
 
+    def get_buffer(self):
+        """
+        Get raw data from source
+        """
+        buf = ""
+        try:
+            with open(JSON_PATH, 'rw') as fd:
+                buf = fd.read()
+        except Exception as e:
+            buf = str(e)
+
+        return buf
+
     @dbus.service.method(JM_DEV_IFACE,
             in_signature = '', out_signature = 's',
             path_keyword = 'path')
@@ -49,15 +62,23 @@ class JuiceMachine(dbus.service.FallbackObject):
         """
         TODO: Return goods list
         """
-        buf = ""
-        try:
-            with open(JSON_PATH, 'rw') as fd:
-                buf = fd.read()
-        except Exception as e:
-            buf = str(e)
+        return self.get_buffer()
 
-        return buf
+    @dbus.service.method(JM_GET_NAME_IFACE,
+            in_signature = '', out_signature = 's',
+            path_keyword = 'path')
+    def get_name(self, path = JM_CONFIG_PATH):
+        """
+        TODO: Return goods list
+        """
+        buf = self.get_buffer()
 
+        dc = json.JSONDecoder().decode(buf)
+        
+        if dc.has_key("name"):
+            return dc["name"]
+
+        return ""
 
 def start_server():
     """
