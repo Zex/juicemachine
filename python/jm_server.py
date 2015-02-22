@@ -64,7 +64,7 @@ class JuiceMachine(dbus.service.FallbackObject):
         """
         return self.get_buffer()
 
-    @dbus.service.method(JM_GET_NAME_IFACE,
+    @dbus.service.method(JM_NAME_IFACE,
             in_signature = '', out_signature = 's',
             path_keyword = 'path')
     def get_name(self, path = JM_CONFIG_PATH):
@@ -77,6 +77,22 @@ class JuiceMachine(dbus.service.FallbackObject):
         
         if dc.has_key("name"):
             return dc["name"]
+
+        return ""
+
+    @dbus.service.method(JM_ID_IFACE,
+            in_signature = '', out_signature = 's',
+            path_keyword = 'path')
+    def get_id(self, path = JM_CONFIG_PATH):
+        """
+        TODO: Return goods list
+        """
+        buf = self.get_buffer()
+
+        dc = json.JSONDecoder().decode(buf)
+        
+        if dc.has_key("id"):
+            return dc["id"]
 
         return ""
 
