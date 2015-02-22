@@ -28,14 +28,10 @@ def start_request():
 #        JM_DEV_IFACE)
 #    print dev_iface.list()
 
-    json_iface = dbus.Interface(obj,
-        JM_JSON_IFACE)
-
+    json_iface = dbus.Interface(obj, JM_JSON_IFACE)
     print json_iface.list()
 
-    get_name_iface = dbus.Interface(obj,
-        JM_GET_NAME_IFACE)
-
-    print get_name_iface.get_name()
+    print dbus.Interface(obj, JM_NAME_IFACE).get_name()
+    print dbus.Interface(obj, JM_ID_IFACE).get_id()
 
 start_request()
