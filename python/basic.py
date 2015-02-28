@@ -57,3 +57,29 @@ class Settings:
             LOG("ERR!", e)
 
 
+class SelftestAbc:
+    """
+    Common selftest definition
+    """
+
+    __all__ = []
+
+    def __init__(self, odir='/tmp'):
+
+        self.odir = odir
+        self.setup()
+
+    def setup(self):
+
+        if not isdir(self.odir):
+            mkdir(self.odir)
+
+    def __call__(self, *args):
+
+        try:
+            
+            [getattr(self, x)(LOG('<<<<<<<<<<<<',x,'>>>>>>>>>>>>>>')) for x in self.__all__]
+
+        except Exception as e:
+
+            LOG("ERR!", e)
