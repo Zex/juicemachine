@@ -53,33 +53,14 @@ class CommonJM(object):
     @integer_ty
     def count(self): pass
 
-def selftest():
+    def dump(self, path=None):
+        raise NotImplementedError('Unimplemented')
 
-    c = CommonJM()
-    print(c.name)
-    c.name = 'qwerty'
-    print(c.name)
-    try:
-        c.name = 2345
-        print(c.name)
-    except Exception as e:
-        print(e)
-
-    try:
-        c.dummy = 568
-    except Exception as e:
-        print(e)
-    print('id:',c.identity)
-    c.identity = 'kjhgfd'
-    print('id:',c.identity)
-    print('count:',c.count)
-    print(type(c.count))
-    c.count = 1234567
-    print('count:',c.count)
-
+    def load(self, path=None):
+        raise NotImplementedError('Unimplemented')
 
 if __name__ == '__main__':
 
-    selftest()
+    pass
 
 
