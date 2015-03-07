@@ -1,0 +1,16 @@
+PROTOBUF=`pwd`/extern/protobuf
+
+./configure \
+    --host=x86_64-w64-mingw32 \
+    --prefix=`pwd`/extern/protobufc \
+    --enable-shared=no \
+	PROTOC=`which protoc` \
+    protobuf_CFLAGS="-I$PROTOBUF/include"\
+	protobuf_LIBS="-L$PROTOBUF/lib -lprotobuf" \
+    CFLAGS="-static-libgcc -static-libstdc++ --static" \
+    CXXFLAGS="-static-libgcc -static-libstdc++ --static"
+
+#    CFLAGS="-D_WIN32 -DPROTOBUF_C_USE_SHARED_LIB -DPROTOBUF_C_EXPORT -static-libgcc -static-libstdc++ --static" \
+#    CXXFLAGS="-D_WIN32 -DPROTOBUF_C_USE_SHARED_LIB -DPROTOBUF_C_EXPORT -static-libgcc -static-libstdc++ --static"
+
+

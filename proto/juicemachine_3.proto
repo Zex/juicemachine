@@ -18,3 +18,12 @@ message Juice
     JuiceHeader header              = 1;
     repeated JuiceProfile prof      = 2;
 }
+
+option py_generic_services = true;
+
+service JMService {
+
+rpc get_juice(string) returns (Juice);
+rpc get_juice_profile(string) returns (JuiceProfile);
+
+}

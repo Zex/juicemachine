@@ -12,6 +12,10 @@ ifndef PROJECT
 $(error PROJECT not defined)
 endif
 
+ifndef PLATFORM
+$(error PLATFORM not defined)
+endif
+
 PROJECT_ALIAS	= $(shell echo $(PROJECT)|tr '[:upper:]' '[:lower:]')
 PROJECT_DIR		= $(shell pwd)
 BUILD			= $(PROJECT_DIR)/build
@@ -19,7 +23,8 @@ VERSION_HEADER	= $(BUILD)/version.h
 
 PBVERSION		= 3.0.0
 PROTO_BASE		= $(PROJECT_DIR)/proto
-PROTOC			= $(PROJECT_DIR)/tools/protobuf-$(PLATFORM)-$(PBVERSION)/protoc
+PROTOBUF_BASE	= $(PROJECT_DIR)/tools/protobuf-$(PLATFORM)-$(PBVERSION)
+PROTOC			= $(PROTOBUF_BASE)/protoc
 
 SOURCES			= $(shell find $(SRCS) -iregex ".*\.c\(c\|pp\|++\|xx\)")
 

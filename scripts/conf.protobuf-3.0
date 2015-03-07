@@ -1,0 +1,9 @@
+PROTOBUF=`pwd`/extern/protobuf
+PROTOC=`pwd`/extern/protobuf/bin/protoc
+
+./configure \
+    --host=x86_64-w64-mingw32 \
+    --prefix=$PROTOBUF \
+    --with-protoc=$PROTOC \
+    CFLAGS="-static-libgcc -static-libstdc++ -static" \
+    CXXFLAGS="-static-libgcc -static-libstdc++ -static"

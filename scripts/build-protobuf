@@ -1,0 +1,27 @@
+# build protobuf
+
+./configure \
+    --host=x86_64-w64-mingw32 \
+    --prefix=/home/zex/lab/win_apps_mailbox/thirdparty/protobuf \
+    --with-protoc=/home/zex/lab/protobuf-3.0.0/bin/protoc \
+    --with-python=no
+
+# build protobuf-c
+PROTOBUF=/home/zex/lab/win_apps_mailbox/thirdparty/protobuf
+#PROTOBUF=/home/zex/lab/protobuf-3.0.0
+#PROTOBUF=/home/zex/lab/protobuf-c-1.1.0/
+
+# ./configure \
+#     --prefix=/home/zex/lab/protobuf-c-1.1.0 \
+# 	PROTOC=/home/zex/lab/protobuf-3.0.0/bin/protoc \
+# 	protobuf_LIBS="-L$PROTOBUF/lib -lprotobuf -lpthread" \
+# 	protobuf_CFLAGS="-I$PROTOBUF/include/"
+# 
+# exit 0
+
+./configure \
+    --host=x86_64-w64-mingw32 \
+    --prefix=/home/zex/lab/win_apps_mailbox/thirdparty/protobufc \
+	protobuf_LIBS="-L$PROTOBUF/lib" \
+	protobuf_CFLAGS="-I$PROTOBUF/include" \
+	PROTOC=/home/zex/lab/protobuf-3.0.0/bin/protoc \

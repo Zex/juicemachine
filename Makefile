@@ -11,7 +11,7 @@ include makefiles/predef.mk
 all: juicemachine
 
 juicemachine:
-	$(MAKE) BUILD=$(BUILD) COMP=$@ -C proto $@ 
+	$(MAKE) PROJECT_DIR=$(PROJECT_DIR) BUILD=$(BUILD) COMP=$@ -C proto $@ 
 
 #gen_src:
 #./scripts/prot2src juicemachine proto build

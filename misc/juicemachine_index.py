@@ -1,6 +1,6 @@
-#\mainpage JuiceMachine Homepage
+## \mainpage JuiceMachine Documentation
 #  
-# <h3>JuiceMachine Documentation</h3>
 #  
+# <b>Author</b>: Zex <top_zlynch <i>AT</i> yahoo.com>
 #
 

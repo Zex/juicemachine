@@ -1,0 +1,12 @@
+PROTOBUF=`pwd`/extern/protobuf
+
+./configure \
+    --prefix=`pwd`/extern/protobuf-c \
+	PROTOC=$PROTOBUF/bin/protoc \
+    protobuf_CFLAGS="-I$PROTOBUF/include"\
+	protobuf_LIBS="-L$PROTOBUF/lib -lprotobuf -lpthread"
+
+#    CFLAGS="-D_WIN32 -DPROTOBUF_C_USE_SHARED_LIB -DPROTOBUF_C_EXPORT -static-libgcc -static-libstdc++ --static" \
+#    CXXFLAGS="-D_WIN32 -DPROTOBUF_C_USE_SHARED_LIB -DPROTOBUF_C_EXPORT -static-libgcc -static-libstdc++ --static"
+
+
