@@ -6,33 +6,7 @@
 # Author: Zex <top_zlynch@yahoo.com>
 #
 
-class string_ty(property):
-
-    __value = ''
-
-    def __set__(self, name, entry):
-
-        if not isinstance(entry, str):
-            raise TypeError('string value is required')
-
-        self.__value = entry
-
-    def __get__(self, *args):
-        return self.__value
-
-class integer_ty(property):
-
-    __value = int()
-
-    def __set__(self, name, entry):
-
-        if not isinstance(entry, int):
-            raise TypeError('integer value is required')
-
-        self.__value = entry
-
-    def __get__(self, *args):
-        return self.__value
+from checker import *
 
 class CommonJM(object):
     """
@@ -44,13 +18,13 @@ class CommonJM(object):
     def __init__(self):
         pass
 
-    @string_ty
+    @string_chk
     def name(self): pass
 
-    @string_ty
+    @string_chk
     def identity(self): pass
     
-    @integer_ty
+    @integer_chk
     def count(self): pass
 
     def dump(self, path=None):
