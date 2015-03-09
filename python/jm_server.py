@@ -17,6 +17,7 @@ class JuiceMachine(dbus.service.FallbackObject):
     """
     JuiceMachine server
     """
+
     def __init__(self):
 
         connection = dbus.SessionBus()
@@ -93,6 +94,18 @@ class JuiceMachine(dbus.service.FallbackObject):
             return dc["id"]
 
         return ""
+
+    @dbus.service.method('jm.schemaid.iface',
+            in_signature = 'ss', out_signature = '')
+    def set_property(self, name, entry):
+
+        return setattr(self, name, entry)
+
+    @dbus.service.method('jm.schemaid.iface',
+            in_signature = 's', out_signature = 's')
+    def get_property(self, name):
+
+        return str(getattr(self, name))
 
 def start_server():
     """
