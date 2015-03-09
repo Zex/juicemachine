@@ -19,7 +19,13 @@ LOG_PREF    = "LOG>"
 
 def LOG(*msg):
 
-    print(LOG_PREF, *msg)
+    if sys.version_info.major > 2:
+
+        print(LOG_PREF, *msg)
+
+    else:
+
+        print(LOG_PREF, msg)
 
 
 class Settings:
