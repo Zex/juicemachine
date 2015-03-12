@@ -11,6 +11,7 @@ import dbus.mainloop.glib
 import gobject
 
 from basic import * 
+import threading
 
 def start_request():
     """
@@ -24,14 +25,7 @@ def start_request():
 
     print obj.Introspect()
 
-#    dev_iface = dbus.Interface(obj,
-#        JM_DEV_IFACE)
-#    print dev_iface.list()
-
-    json_iface = dbus.Interface(obj, JM_JSON_IFACE)
-    print json_iface.list()
-
-    print dbus.Interface(obj, JM_NAME_IFACE).get_name()
-    print dbus.Interface(obj, JM_ID_IFACE).get_id()
+    prof_iface = dbus.Interface(obj, JM_PROFILE_IFACE)
+    print(prof_iface.get_comment())
 
 start_request()
