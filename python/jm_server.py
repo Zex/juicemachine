@@ -95,17 +95,17 @@ class JuiceMachine(dbus.service.FallbackObject):
 
         return ""
 
-    @dbus.service.method('jm.schemaid.iface',
-            in_signature = 'ss', out_signature = '')
-    def set_property(self, name, entry):
+    @dbus.service.method(JM_PROFILE_IFACE,
+            out_signature = 'as')
+    def get_comment(self):
 
-        return setattr(self, name, entry)
+        ret = [ 
+                'great!',
+                'not so good.',
+                'one more',
+              ]
 
-    @dbus.service.method('jm.schemaid.iface',
-            in_signature = 's', out_signature = 's')
-    def get_property(self, name):
-
-        return str(getattr(self, name))
+        return ret
 
 def start_server():
     """
@@ -119,6 +119,5 @@ def start_server():
     connection = dbus.StarterBus()
 
     loop.run()
-
 
 start_server()
