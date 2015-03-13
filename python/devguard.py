@@ -10,8 +10,9 @@ def device_changed():
 
 context = pyudev.Context()
 monitor = pyudev.Monitor.from_netlink(context)
-monitor.filter_by('nvram')
+monitor.filter_by('block')
 observer = MonitorObserver(monitor, device_changed)
+
 #observer.connect('device-changed', device_changed)
 #observer.start()
 
