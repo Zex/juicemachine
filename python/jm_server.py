@@ -12,6 +12,19 @@ import gobject
 
 import json
 from basic import * 
+#from juicemachine_pb2 import *
+from timer import *
+
+class DumpCtrl:
+
+    def __init__(self, intv):
+
+        self.__ctrl = Timer(intv, self.dump)
+        self.__ctrl.run()
+
+    def dump(self):
+
+        print('dumping ...')
 
 class JuiceMachine(dbus.service.FallbackObject):
     """
@@ -26,6 +39,8 @@ class JuiceMachine(dbus.service.FallbackObject):
 
         dbus.service.Object.__init__(self, connection_name,
             JM_CONFIG_PATH)
+    
+        self.__dumper = DumpCtrl(3.0)
 
     def get_buffer(self):
         """
