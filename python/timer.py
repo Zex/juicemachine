@@ -12,19 +12,20 @@ obj = threading.Timer(3.0, timer_cb)
 obj.run()
 """
 
-class Dumper(threading.Thread):
+class Timer(threading.Thread):
 
     def __init__(self, intv=None, func=None, *args):
 
-        self.intv = intv
-        self.func = func
+        self.__intv = intv
+        self.__func = func
         self.__running = True
 
     def run(self, *args):
 
-        while self.__running and self.func:
+        while self.__running and self.__func:
 
-            self.func(*args)
+            threading._sleep(self.__intv)
+            self.__func(*args)
 
     def cancel(self):
 
@@ -32,6 +33,6 @@ class Dumper(threading.Thread):
 
 if __name__ == '__main__':
 
-    Timer = Dumper(2, timer_cb)
-    Timer.run()
+    tm = Timer(2, timer_cb)
+    tm.run()
 
