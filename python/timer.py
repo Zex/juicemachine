@@ -16,25 +16,26 @@ class Timer(threading.Thread):
 
     def __init__(self, intv=None, func=None, *args):
         
-        self.__intv = intv
-        self.__func = func
-        self.__running = True
+        self._intv = intv
+        self._func = func
+        self._running = True
 
         threading.Thread.__init__(self)
         self.setDaemon(True)
 
     def run(self, *args):
 
-        while self.__running and self.__func:
+        while self._running and self._func:
 
-            with threading.Lock() as l:
-                threading._sleep(self.__intv)
-                self.__func(*args)
+            threading._sleep(self._intv)
+
+            with threading.RLock() as l:
+                self._func(*args)
     
     def cancel(self):
 
         print('cancel ...')
-        self.__running = False
+        self._running = False
 
 if __name__ == '__main__':
 
