@@ -15,20 +15,25 @@ obj.run()
 class Timer(threading.Thread):
 
     def __init__(self, intv=None, func=None, *args):
-
+        
         self.__intv = intv
         self.__func = func
         self.__running = True
+
+        threading.Thread.__init__(self)
+        self.setDaemon(True)
 
     def run(self, *args):
 
         while self.__running and self.__func:
 
-            threading._sleep(self.__intv)
-            self.__func(*args)
-
+            with threading.Lock() as l:
+                threading._sleep(self.__intv)
+                self.__func(*args)
+    
     def cancel(self):
 
+        print('cancel ...')
         self.__running = False
 
 if __name__ == '__main__':
