@@ -19,12 +19,17 @@ class DumpCtrl:
 
     def __init__(self, intv):
 
+        self.intv = intv
         self.__ctrl = Timer(intv, self.dump)
         self.__ctrl.run()
 
     def dump(self):
 
         print('dumping ...')
+
+    def __del__(self):
+
+        self.__ctrl.cancel()
 
 class JuiceMachine(dbus.service.FallbackObject):
     """
@@ -127,6 +132,9 @@ def start_server():
     Stadrt juicemachine server
     """
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+   # gobject.threads_init()
+   # dbus.mainloop.glib.threads_init()
+
     global loop
 
     obj = JuiceMachine()
