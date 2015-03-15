@@ -13,23 +13,14 @@ import gobject
 import json
 from basic import * 
 #from juicemachine_pb2 import *
-from timer import *
+#from timer import *
 
 class DumpCtrl:
-
-    def __init__(self, intv):
-
-        self.intv = intv
-        self.__ctrl = Timer(intv, self.dump)
-        self.__ctrl.run()
 
     def dump(self):
 
         print('dumping ...')
-
-    def __del__(self):
-
-        self.__ctrl.cancel()
+        return True
 
 class JuiceMachine(dbus.service.FallbackObject):
     """
@@ -44,9 +35,21 @@ class JuiceMachine(dbus.service.FallbackObject):
 
         dbus.service.Object.__init__(self, connection_name,
             JM_CONFIG_PATH)
-    
-        self.__dumper = DumpCtrl(3.0)
 
+        obj = connection.get_object(
+            JM_SERVICE_NAME, JM_CONFIG_PATH)
+
+        obj.connect_to_signal(
+            'set_comment', self.signal_cb,
+            dbus_interface = JM_PROFILE_IFACE)
+
+        dump_ctrl = DumpCtrl()
+        gobject.timeout_add(10, dump_ctrl.dump)
+
+    def signal_cb(self):
+
+        print 'signal_cb ...'
+    
     def get_buffer(self):
         """
         Get raw data from source
@@ -127,20 +130,40 @@ class JuiceMachine(dbus.service.FallbackObject):
 
         return ret
 
+    @dbus.service.method(JM_PROFILE_IFACE)
+    def set_comment(self):
+
+        ret = [ 
+                'great!',
+                'not so good.',
+                'one more',
+              ]
+
+
 def start_server():
     """
     Stadrt juicemachine server
     """
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-   # gobject.threads_init()
-   # dbus.mainloop.glib.threads_init()
+    dbus.mainloop.glib.threads_init()
 
     global loop
 
     obj = JuiceMachine()
     loop = gobject.MainLoop()
+
     connection = dbus.StarterBus()
 
+    print('looping ...')
     loop.run()
 
-start_server()
+try:
+    start_server()
+
+except KeyboardInterrupt:
+
+    print('keyboard int')
+
+    global loop
+    loop.quit()
+
