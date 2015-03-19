@@ -136,3 +136,29 @@ class list_of_string_chk(list_chk):
                 raise TypeError('list of string required')
 
         self._value = entry
+"""
+from cipher_helper import CiHelper
+
+class passwd_chk(string_chk):
+
+    __ci = CiHelper
+
+    def __init__(self, func):
+        
+        self._value = ''
+
+    def __set__(self, obj, entry):
+
+        string_chk(None).__set__(obj, entry)
+
+        try:
+            b64.b64decode(entry, validate=True)
+            self._value = entry
+        except b64.binascii.Error:
+            self._value = self.__ci.enc(entry)[0]
+
+    def __get__(self, obj, cls):
+
+        return self.__ci.dec(self._value)[0]
+
+"""
