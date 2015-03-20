@@ -136,6 +136,16 @@ class list_of_string_chk(list_chk):
                 raise TypeError('list of string required')
 
         self._value = entry
+
+class dummy_chk(list_chk):
+    """
+    type('usersettings_chk', (list_chk,), {'ilen':1, 'nr':2})
+    """
+    def __init__(self, func):
+
+        self.ilen = 1
+        self.nr = 5
+
 """
 from cipher_helper import CiHelper
 
