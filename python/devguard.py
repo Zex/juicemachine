@@ -1,22 +1,36 @@
+#!/usr/bin/python
+# devguard.py
+#
+# Device monitoring
+#
+# Author: Zex <top_zlynch@yahoo.com>
+#
 import pyudev
-from pyudev import MonitorObserver
-from gi.overrides import GObject as gobject
+#from pyudev import MonitorObserver
+#from gi.overrides import GObject as gobject
+import gobject
+from pyudev.glib import GUDevMonitorObserver
 
-def device_changed():
+def on_dev_changed(action, device):
 
-    from os import mkdir
+    with open('/tmp/device-changed', 'a') as fd:
 
-    mkdir('/tmp/device-changed')
+        fd.write('<+++++++++++++++++++++++++++++++++++>\n')
+        fd.write(str(action)+'\n')
+        fd.write('---------------------------\n')
+
+
+        [fd.write(str(item)+'\n') for item in device.items()]
 
 context = pyudev.Context()
 monitor = pyudev.Monitor.from_netlink(context)
 monitor.filter_by('block')
-observer = MonitorObserver(monitor, device_changed)
 
-#observer.connect('device-changed', device_changed)
-#observer.start()
+observer = GUDevMonitorObserver(monitor)
+observer.connect('device-changed', on_dev_changed)
+monitor.start()
 
 #monitor.enable_receiving()
-#gobject.MainLoop().run()
+gobject.MainLoop().run()
 
 
