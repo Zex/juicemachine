@@ -15,11 +15,7 @@ def on_dev_changed(action, device):
 
     with open('/tmp/device-changed', 'a') as fd:
 
-        fd.write('<+++++++++++++++++++++++++++++++++++>\n')
         fd.write(str(action)+'\n')
-        fd.write('---------------------------\n')
-
-
         [fd.write(str(item)+'\n') for item in device.items()]
 
 context = pyudev.Context()
@@ -30,7 +26,6 @@ observer = GUDevMonitorObserver(monitor)
 observer.connect('device-changed', on_dev_changed)
 monitor.start()
 
-#monitor.enable_receiving()
 gobject.MainLoop().run()
 
 
