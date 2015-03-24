@@ -33,8 +33,41 @@ class CommonJM(object):
     def load(self, path=None):
         raise NotImplementedError('Unimplemented')
 
+class __juicemachine_base__:
+
+    @string_chk
+    def jm_shared_port(self): pass
+
+    def print_name(self):
+        raise NotImplementedError('Unimplemented')
+
+class jm_port_1(__juicemachine_base__):
+
+    def __init__(self):
+        self.jm_shared_port = 'jm_port_1'
+
+    def print_name(self):
+        print("name: jm-1 @", self.jm_shared_port)
+
+class jm_port_2(__juicemachine_base__):
+
+    def __init__(self):
+        self.jm_shared_port = 'jm_port_2'
+    
+    def print_name(self):
+        print("name: jm-2 @", self.jm_shared_port)
+
 if __name__ == '__main__':
 
-    pass
+    jm1 = jm_port_1()
+    jm2 = jm_port_2()
+
+    print(jm1.jm_shared_port)
+    print(jm2.jm_shared_port)
+
+    jm1.jm_shared_port = "blue-port-7"
+
+    jm1.print_name()
+    jm2.print_name()
 
 
