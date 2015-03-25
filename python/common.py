@@ -5,7 +5,21 @@
 #
 # Author: Zex <top_zlynch@yahoo.com>
 #
-
+# Shared port for communication amount jms
+#
+#   ...
+#    jm1 = jm_port_1()
+#    jm2 = jm_port_2()
+#
+#    print(jm1.jm_shared_port)
+#    print(jm2.jm_shared_port)
+#
+#    jm1.jm_shared_port = "blue-port-7"
+#
+#    jm1.print_name()
+#    jm2.print_name()
+#   ...
+#   
 from checker import *
 
 class CommonJM(object):
@@ -57,17 +71,6 @@ class jm_port_2(__juicemachine_base__):
     def print_name(self):
         print("name: jm-2 @", self.jm_shared_port)
 
-if __name__ == '__main__':
 
-    jm1 = jm_port_1()
-    jm2 = jm_port_2()
-
-    print(jm1.jm_shared_port)
-    print(jm2.jm_shared_port)
-
-    jm1.jm_shared_port = "blue-port-7"
-
-    jm1.print_name()
-    jm2.print_name()
 
 
