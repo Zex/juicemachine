@@ -149,11 +149,6 @@ class list_of_string_chk(list_chk):
         if entry is not None:
             self._value = entry
 
-"""----------------- protocol specified checkers -------------------
-TODO: further re check
-NOTE: the item length and item number depend on the data structures
-      these checkers porting in
-"""
 class dotted_ip_chk(string_chk):
 
     reobj = re.compile('^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$')
