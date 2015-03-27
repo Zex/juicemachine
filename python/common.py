@@ -19,6 +19,13 @@
 #    jm1.print_name()
 #    jm2.print_name()
 #   ...
+#    cjm = CommonJM()
+#    cjm.name = 'jm_zhp'
+#    cjm.count = 127
+#    cjm.identity = 'xx-512-433'
+#    
+#    buf = {x:getattr(cjm, x) for x in ['name', 'count', 'identity']}
+#    print(id(buf), id(cjm))
 #   
 from checker import *
 
@@ -70,7 +77,6 @@ class jm_port_2(__juicemachine_base__):
     
     def print_name(self):
         print("name: jm-2 @", self.jm_shared_port)
-
 
 
 
