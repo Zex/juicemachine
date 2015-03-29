@@ -5,6 +5,7 @@
 # Author: Zex <top_zlynch@yahoo.com>
 #
 JM_SERVICE_NAME     = "org.juicemachine"
+JM_PROFILE_IFACE    = "jm.profile.iface"
 JM_DEV_IFACE        = "org.juicemachine.dev.iface"
 JM_JSON_IFACE       = "org.juicemachine.json.iface"
 JM_CONFIG_PATH      = "/org/juicemachine/config"
@@ -15,11 +16,14 @@ JM_ID_IFACE         = "org.juicemachine.id.iface"
 NVRAM_DEV   = "/dev/nvram"
 JSON_PATH   = "/tmp/juicemachine.json"
 
+
 LOG_PREF    = "LOG>"
+
+from sys import version_info
 
 def LOG(*msg):
 
-    print(LOG_PREF, *msg)
+    print(LOG_PREF, msg)
 
 
 class Settings:

@@ -1,0 +1,17 @@
+###juicemachine
+###--------------------------------------------------
+###Country Name (2 letter code) [XX]:CN
+###State or Province Name (full name) []:SH
+###Locality Name (eg, city) [Default City]:SH
+###Organization Name (eg, company) [Default Company Ltd]:JUICEMACHINE
+###Organizational Unit Name (eg, section) []:JM-1
+###Common Name (eg, your name or your server's hostname) []:feet.net
+###Email Address []:jm@feet.net
+###
+###Please enter the following 'extra' attributes
+###to be sent with your certificate request
+###A challenge password []:juicemachine
+###An optional company name []:JM
+###--------------------------------------------------
+openssl genrsa -des3 -out server.key 1024
+openssl req -new -key server.key -out server.csr

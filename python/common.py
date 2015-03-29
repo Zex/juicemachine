@@ -5,7 +5,28 @@
 #
 # Author: Zex <top_zlynch@yahoo.com>
 #
-
+# Shared port for communication amount jms
+#
+#   ...
+#    jm1 = jm_port_1()
+#    jm2 = jm_port_2()
+#
+#    print(jm1.jm_shared_port)
+#    print(jm2.jm_shared_port)
+#
+#    jm1.jm_shared_port = "blue-port-7"
+#
+#    jm1.print_name()
+#    jm2.print_name()
+#   ...
+#    cjm = CommonJM()
+#    cjm.name = 'jm_zhp'
+#    cjm.count = 127
+#    cjm.identity = 'xx-512-433'
+#    
+#    buf = {x:getattr(cjm, x) for x in ['name', 'count', 'identity']}
+#    print(id(buf), id(cjm))
+#   
 from checker import *
 
 class CommonJM(object):
@@ -33,8 +54,29 @@ class CommonJM(object):
     def load(self, path=None):
         raise NotImplementedError('Unimplemented')
 
-if __name__ == '__main__':
+class __juicemachine_base__:
 
-    pass
+    @string_chk
+    def jm_shared_port(self): pass
+
+    def print_name(self):
+        raise NotImplementedError('Unimplemented')
+
+class jm_port_1(__juicemachine_base__):
+
+    def __init__(self):
+        self.jm_shared_port = 'jm_port_1'
+
+    def print_name(self):
+        print("name: jm-1 @", self.jm_shared_port)
+
+class jm_port_2(__juicemachine_base__):
+
+    def __init__(self):
+        self.jm_shared_port = 'jm_port_2'
+    
+    def print_name(self):
+        print("name: jm-2 @", self.jm_shared_port)
+
 
 
