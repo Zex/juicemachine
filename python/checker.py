@@ -7,11 +7,11 @@
 #
 #
 from basic import *
+import re
    
-
-class Checker(property):
+class checker(property):
     """
-    Schema related restrictions
+    Item restrictions
 
     @ilen   length of one item, 0 for unlimited
     @nr     number of items, 0 for unlimited 
@@ -64,7 +64,7 @@ class Checker(property):
 #        if name in ['ilen', 'nr']:
 #            self.tlen = self.ilen * self.nr
 
-class list_chk(Checker):
+class list_chk(checker):
 
     _value = []
 
@@ -79,7 +79,7 @@ class list_chk(Checker):
         if entry is not None:
             self._value = entry
 
-class string_chk(Checker):
+class string_chk(checker):
 
     _value = str()
 
@@ -97,7 +97,7 @@ class string_chk(Checker):
 
         self._value = entry
 
-class integer_chk(Checker):
+class integer_chk(checker):
 
     _value = int()
 
@@ -110,7 +110,7 @@ class integer_chk(Checker):
 
         self._value = entry
 
-class boolean_chk(Checker):
+class boolean_chk(checker):
 
     _value = bool()
 
@@ -123,7 +123,7 @@ class boolean_chk(Checker):
 
         self._value = entry
 
-class map_chk(Checker):
+class map_chk(checker):
 
     _value = {}
 
@@ -151,10 +151,14 @@ class list_of_string_chk(list_chk):
 
 class dotted_ip_chk(string_chk):
 
-    reobj = re.compile('^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$')
+    def __init__(self, func):
+    
+        super(dotted_ip_chk, self).__init__(obj, entry)
 
-    ilen = 15
-    nr   = 1
+        self.reobj = re.compile('^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$')
+
+        self.ilen = 15
+        self.nr   = 1
 
     def __set__(self, obj, entry):
 
@@ -167,11 +171,21 @@ class dotted_ip_chk(string_chk):
 
 class mac_chk(string_chk):
 
-    reobj = re.compile('^([0-9A-Fa-f]{2}[.:-]{0,1}){6}$')
-    ilen  = 17
-    nr    = 1
+
+    def __init__(self, func):
+    
+        super(mac_chk, self).__init__(obj, entry)
+
+        self.reobj = re.compile('^([0-9A-Fa-f]{2}[.:-]{0,1}){6}$')
+        self.ilen  = 17
+        self.nr    = 1
 
     def __set__(self, obj, entry):
+
+        if entry is None or len(entry) == 0:
+
+            self._value = ''
+            return
 
         super(mac_chk, self).__set__(obj, entry)
 
@@ -179,6 +193,7 @@ class mac_chk(string_chk):
             raise ValueError('Colon delimited string required')
 
         self._value = entry
+
 
 class dummy_chk(list_chk):
     """
