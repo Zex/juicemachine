@@ -19,5 +19,9 @@ juicemachine:
 clean:
 	$(RM) build
 
+jm_object:
+	$(MAKE) PROJECT_DIR=$(PROJECT_DIR) BUILD=$(BUILD) -C src/ $@
+
+
 htmldoc:
 	doxygen Doxyfile
