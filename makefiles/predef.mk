@@ -1,5 +1,6 @@
 # makefiles/predef.mk
 
+MAKE	= make
 CC		= gcc
 CXX		= g++
 TOUCH	= touch
