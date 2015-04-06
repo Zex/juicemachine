@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# Author: Zex <top_zlynch@yahoo.com>
+#
+function change_volume
+{
+    step=$1
+    current=`amixer sget Master |grep "Front Left:"|awk '{print $5}'|sed s/[\]\[%]//g`
+    newval=$(($current+$step))
+    
+    amixer sset Master $newval%
+}
+
+step=10
+
+[ ! -z $1 ] && step=$1
+
+change_volume $step
+
