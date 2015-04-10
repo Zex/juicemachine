@@ -1,3 +1,7 @@
+
+locale.localeconv()
+{'n_sep_by_space': 127, 'mon_thousands_sep': '', 'p_sign_posn': 127, 'mon_grouping': [], 'n_sign_posn': 127, 'int_frac_digits': 127, 'p_sep_by_space': 127, 'n_cs_precedes': 127, 'int_curr_symbol': '', 'negative_sign': '', 'mon_decimal_point': '', 'decimal_point': '.', 'thousands_sep': '', 'grouping': [], 'p_cs_precedes': 127, 'currency_symbol': '', 'frac_digits': 127, 'positive_sign': ''}
+
 Locale	    Hex	    Dec	Valid Locale ID:InputLocale combinations	Language Collection
 Afrikaans	0436	1078	0436:00000409,
 0409:00000409	Basic
