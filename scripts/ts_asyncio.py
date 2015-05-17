@@ -8,13 +8,18 @@ LOG_PREF    = "LOG>"
 def LOG(*msg):
     print(LOG_PREF, msg)
 
+def ts_quit():
+    LOG("Quit ...")
+
 @aio.coroutine
 def read_backend():
     LOG('READING BACKEND ...')
 
 
 loop = aio.get_event_loop()
-loop.run_until_complete(read_backend())
+loop.run_until_complete(
+    loop.create_server(ts_quit, '127.0.0.1', 15113))
+#    read_backend())
 loop.close()
 
 aio.start_server(loop)
